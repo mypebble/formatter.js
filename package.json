@@ -2,7 +2,7 @@
   "name": "formatter.js-pebble",
   "version": "0.1.5",
   "description": "Format user input to match a specified pattern",
-  "author": "Joe Simpson <joe.simpson@talktopebble.co.uk>"
+  "author": "Joe Simpson <joe.simpson@talktopebble.co.uk>",
   "contributors": [
     {
       "name": "Jarid Margolin",
