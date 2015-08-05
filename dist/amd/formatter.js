@@ -23,6 +23,8 @@ var defaults = {
 var inptRegs = {
   '9': /[0-9]/,
   'a': /[A-Za-z]/,
+  'A': /[A-Z]/,
+  '?': /[A-Z0-9]/,
   '*': /[A-Za-z0-9]/
 };
 
@@ -368,6 +370,12 @@ Formatter.prototype._validateInpts = function () {
   for (var i = 0; i < this.val.length; i++) {
     // Get char inpt type
     var inptType = this.inpts[i];
+
+    // When only allowing capitals, ensure this char is capitalized!
+    if (inptType === '?' || inptType === 'A'){
+      var up = this.val.charAt(i).toUpperCase();
+      this.val = utils.addChars(utils.removeChars(this.val, i, i+1), up, i);
+    }
 
     // Checks
     var isBadType = !inptRegs[inptType],

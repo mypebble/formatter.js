@@ -1,5 +1,5 @@
 /*!
- * v0.1.5
+ * v0.1.8
  * Copyright (c) 2014 First Opinion
  * formatter.js is open sourced under the MIT license.
  *
@@ -449,6 +449,8 @@ var formatter = function (patternMatcher, inptSel, utils) {
   var inptRegs = {
     '9': /[0-9]/,
     'a': /[A-Za-z]/,
+    'A': /[A-Z]/,
+    '?': /[A-Z0-9]/,
     '*': /[A-Za-z0-9]/
   };
   //
@@ -733,6 +735,11 @@ var formatter = function (patternMatcher, inptSel, utils) {
     for (var i = 0; i < this.val.length; i++) {
       // Get char inpt type
       var inptType = this.inpts[i];
+      // When only allowing capitals, ensure this char is capitalized!
+      if (inptType === '?' || inptType === 'A') {
+        var up = this.val.charAt(i).toUpperCase();
+        this.val = utils.addChars(utils.removeChars(this.val, i, i + 1), up, i);
+      }
       // Checks
       var isBadType = !inptRegs[inptType], isInvalid = !isBadType && !inptRegs[inptType].test(this.val.charAt(i)), inBounds = this.inpts[i];
       // Remove if incorrect and inbounds

@@ -1,13 +1,15 @@
-formatter.js [![Build Status](https://travis-ci.org/firstopinion/formatter.js.png)](https://travis-ci.org/firstopinion/formatter.js)
+formatter.js
 ============
 
-       ___                    __  __              _   
+       ___                    __  __              _
       / _/__  ______ _  ___ _/ /_/ /____ ____    (_)__
      / _/ _ \/ __/  ' \/ _ `/ __/ __/ -_) __/   / (_-<
     /_/ \___/_/ /_/_/_/\_,_/\__/\__/\__/_/ (_)_/ /___/
-                                            |___/     
-                                            
+                                            |___/
+
 Format user input to match a specified pattern
+
+Pebble fork to keep things up to date
 
 
 
@@ -25,10 +27,10 @@ Sometimes it is useful to format user input as they type. Existing libraries lac
 
 
 
-On Bower
+On NPM
 --------
 
-    bower install formatter
+    npm install formatter.js-pebble
 
 
 
@@ -65,10 +67,12 @@ Usage
 Opts
 ----
 
-* **pattern** (required): String representing the pattern of your formatted input. User input areas begin with `{{` and end with `}}`. For example, a phone number may be represented: `({{999}}) {{999}}-{{999}}`. You can specify numbers, letters, or numbers and letters.
+* **pattern** (required): String representing the pattern of your formatted input. User input areas begin with `{{` and end with `}}`. For example, a phone number may be represented: `({{999}}) {{999}}-{{999}}`. You can specify numbers, letters, or numbers and letters. When using `?` or `A` lower-case letters will automatically be converted to uppercase.
   * 9: [0-9]
   * a: [A-Za-z]
-  * \*: [A-Za-z0-9] 
+  * \*: [A-Za-z0-9]
+  * A: [A-Z]
+  * ?: [A-Z0-9]
 * **persistent**: \[False\] Boolean representing if the formatted characters are always visible (persistent), or if they appear as you type.
 * **patterns** (optional, replaces *pattern*): Array representing a priority ordered set of patterns that may apply dynamically based on the current input value. Each value in the array is an object, whose key is a regular expression string and value is a *pattern* (see above). The regular expression is tested against the unformatted input value. You may use the special key `'*'` to catch all input values.
 ```
@@ -123,11 +127,11 @@ Tests
 -----
 
 Install Dependencies:
-    
+
     npm install
 
 Run Tests:
-    
+
     npm test
 
 
